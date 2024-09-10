@@ -1,5 +1,6 @@
-from simpleTree import Tree, TreeNode
-from TreeTraversal import BinaryTreeNode, DFS, BFS
+from TreeDataStructure.src.simpleTree import Tree, TreeNode
+from TreeDataStructure.src.TreeTraversal import BinaryTreeNode, DFS, BFS
+
 
 
 def buildSimpleTree():

@@ -1,5 +1,5 @@
 
-class TreeNode():
+class TreeNode:
     def __init__(self, entries):
         self.entries = entries
         self.children = []

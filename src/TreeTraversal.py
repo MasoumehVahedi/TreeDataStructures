@@ -74,7 +74,7 @@ class DFS:
     """
 
     def InOrderTraversal(self, root):
-        """ In-order Traversal: Recursively visit:
+        """ In-order Traversal: Recursively visit (left-root-right):
             1- First, visit all the nodes in the left sub-tree
             2- Then the root node
             3- Visit all the nodes in the right sub-tree
@@ -89,7 +89,7 @@ class DFS:
 
 
     def preOrderTraversal(self, root):
-        """ Pre-order Traversal:
+        """ Pre-order Traversal (root-left-right):
             1- Visit root node
             2- Visit all the nodes in the left sub-tree
             3- Visit all the nodes in the right sub-tree
@@ -103,7 +103,7 @@ class DFS:
             self.preOrderTraversal(root.right)        # Traverse right
 
     def postOrderTraversal(self, root):
-        """ Post-order Traversal:
+        """ Post-order Traversal (left-right-root):
             1- Visit all the nodes in the left sub-tree
             2- Visit all the nodes in the right sub-tree
             3- Visit the root node.
