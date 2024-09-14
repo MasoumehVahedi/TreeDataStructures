@@ -26,7 +26,9 @@ def main():
     balanced_tree.printTree(balanced_root)
 
     print("\nBalanced Binary Tree (Preorder Traversal):")
-    balanced_tree.preOrderTraversal(balanced_root)   # answer: 3 1 2 4 5
+    result = []
+    balanced_tree.preOrderTraversal(balanced_root, result)   # answer: 3 1 2 4 5
+    print(result)
 
 
 if __name__ == "__main__":

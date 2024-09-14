@@ -26,19 +26,20 @@ class UnbalancedBinaryTree:
         self.root = None
 
     def insert(self, data):
-        if self.root == None:
+        if self.root is None:
             self.root = TreeNode(data)
         else:
             self._insert(data, self.root)
+        return self.root
 
     def _insert(self, data, current_node):
         if data < current_node.data:
-            if current_node.left == None:
+            if current_node.left is None:
                 current_node.left = TreeNode(data)
             else:
                 self._insert(data, current_node.left)
         else:
-            if current_node.right == None:
+            if current_node.right is None:
                 current_node.right = TreeNode(data)
             else:
                 self._insert(data, current_node.right)
@@ -97,13 +98,14 @@ class BalancedBinaryTree:
         return self.buildBalancedTree(nodes, start=0, end=len(nodes)-1)
 
 
-    def preOrderTraversal(self, node):
+    def preOrderTraversal(self, node, result):
         """ Preorder traversal to print the tree structure (root-left-right). """
         if node is None:
             return
-        print(f"Root={node.data} -> ", end=" ")
-        self.preOrderTraversal(node.left)
-        self.preOrderTraversal(node.right)
+        #print(f"Root={node.data} -> ", end=" ")
+        result.append(node.data)
+        self.preOrderTraversal(node.left, result)
+        self.preOrderTraversal(node.right, result)
 
     def printTree(self, node, level=0):
         if node is not None:

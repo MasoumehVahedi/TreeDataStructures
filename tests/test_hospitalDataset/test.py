@@ -31,8 +31,8 @@ def search(df, reference_date, interval_queries):
     balancedTree_index.root = balancedTree_index.rebuildTree(balancedTree_index.root)  # Update the root
     # balancedTree_index.printTree()
 
-    if balancedTree_index.root:  # To ensure the tree is not empty
-        print(f"Root Interval: [{balancedTree_index.root.interval.low}, {balancedTree_index.root.interval.high}]")
+    #if balancedTree_index.root:  # To ensure the tree is not empty
+    #    print(f"Root Interval: [{balancedTree_index.root.interval.low}, {balancedTree_index.root.interval.high}]")
 
     times = []
     for index, row in interval_queries.iterrows():
@@ -42,7 +42,6 @@ def search(df, reference_date, interval_queries):
         # Convert the query interval into integer (days since reference)
         start_day = days_since_reference(start_date, reference_date)
         end_day = days_since_reference(end_date, reference_date)
-        #print(f"start_day: {start_day}, end_day: {end_day}")
 
         # Define the interval query using the integer representation
         query_interval = Interval(start_day, end_day)
