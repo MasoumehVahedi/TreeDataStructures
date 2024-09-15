@@ -5,7 +5,7 @@ class Interval:
         self.low = low
         self.high = high
 
-    def __str__(self):
+    def __repr__(self):
         return f"[{self.low}, {self.high}]"
 
 
@@ -87,24 +87,21 @@ class BalancedIntervalTree:
         self.inOrderTraversal(node, intervals)
         return self.buildBalancedTree(intervals, start=0, end=len(intervals) - 1)
 
-
     def isOverlapping(self, root, search_interval, results):
-        """ Overlapping Interval Search:
-            This function checks if an interval overlaps with any interval in the tree.
-        """
         if root is None:
             return
 
-        # If the root's interval overlaps with the search_interval
+        # Check for overlap with the current node
         if root.interval.low <= search_interval.high and search_interval.low <= root.interval.high:
             results.append(root.interval)
 
-        # If the left child's max is greater than or equal to the search_interval's low, search in the left subtree
+        # Check left subtree if it might contain overlapping intervals
         if root.left is not None and root.left.max >= search_interval.low:
             self.isOverlapping(root.left, search_interval, results)
 
-        # Otherwise, check the right subtree
-        self.isOverlapping(root.right, search_interval, results)
+        # Check right subtree if it might contain overlapping intervals
+        if root.right is not None and root.interval.low <= search_interval.high:
+            self.isOverlapping(root.right, search_interval, results)
 
 
     def printTree(self, node=None, level=0, prefix="Root: "):
