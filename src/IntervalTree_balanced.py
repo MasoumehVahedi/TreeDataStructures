@@ -6,9 +6,6 @@
         (1) AVL Tree (dynamic balancing with rotations).
         (2) Rebuild the Tree (static balancing by collecting and re-inserting).
 
-
-
-
 """
 
 from TreeDataStructure.src.IntervalTree import Node
@@ -24,6 +21,7 @@ class BalancedIntervalTree:
             self.root = Node(interval)
         else:
             self._insert(self.root, interval)
+        return self.root
 
 
     def _insert(self, node, interval):
@@ -81,7 +79,6 @@ class BalancedIntervalTree:
         self.inOrderTraversal(node, intervals)
         return self.buildBalancedTree(intervals, start=0, end=len(intervals) - 1)
 
-
     def isOverlapping(self, root, search_interval):
         """ Overlapping Interval Search:
             This function checks if an interval overlaps with any interval in the tree.
@@ -89,18 +86,20 @@ class BalancedIntervalTree:
         if root is None:
             return None
 
-        # if search interval overlaps with root's interval:
-        # Loginc ->  low_root <= search_key high   and   search_key low <= high_root
+        # Check if the search interval overlaps with the current root's interval
         if root.interval.low <= search_interval.high and search_interval.low <= root.interval.high:
+            #print(f"Found overlapping interval: {root.interval}")
             return root.interval
 
-        # if the max value of left subtree is greater than or equal to the low value of the query interval:
-        # Logic -> max(left subtree) >= search_key low
-        elif root.left is not None and root.left.max >= search_interval.low:
+        # Check if the max value in the left subtree is greater than or equal to the search interval's low
+        if root.left is not None and root.left.max >= search_interval.low:
+            #print(f"Going left, max of left subtree: {root.left.max}")
             return self.isOverlapping(root.left, search_interval)
-        else:
-            # Otherwise, search the right subtree
-            return self.isOverlapping(root.right, search_interval)
+
+        # Otherwise, search the right subtree
+        #print(f"Going right")
+        return self.isOverlapping(root.right, search_interval)
+
 
     def printTree(self, node=None, level=0, prefix="Root: "):
         """ Print the tree in a hierarchical way to visualize the structure clearly. """

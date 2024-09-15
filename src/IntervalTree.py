@@ -15,7 +15,15 @@ class Interval:
         self.low = low
         self.high = high
 
-    def __str__(self):
+    def __eq__(self, other):
+        """ __eq__ : This method allows us to compare two Interval objects based on their low and high
+                     values rather than their memory locations.
+        """
+        if isinstance(other, Interval):
+            return self.low == other.low and self.high == other.high
+        return False
+
+    def __repr__(self):
         return f"[{self.low}, {self.high}]"
 
 
@@ -26,7 +34,7 @@ class Node:
         self.left = None
         self.right = None
 
-    def __str__(self):
+    def __repr__(self):
         return f"Interval: {self.interval}, Max: {self.max}"
 
 
